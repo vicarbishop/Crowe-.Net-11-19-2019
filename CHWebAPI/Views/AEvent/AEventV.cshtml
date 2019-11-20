@@ -1,0 +1,169 @@
+﻿@{
+    ViewBag.Title = "EventDetails";
+}
+<h2>Event Details</h2>
+<script src="~/Scripts/jquery-1.7.1.mis.js"></script>
+<script lang="ja" type="text/javascript">
+    function AlleventDets() {
+        var id = 2;
+        $.ajax({
+            url: 'http://localhost:51474/api/AEventDetails/' ,
+            type: 'GET',
+            dataType: "json",
+            success: function (data) {
+
+                var datavalue = data;
+                var myJsonObject = datavalue;
+
+                var EventLocation = myJsonObject[0].EventLocation;
+                var EventName = myJsonObject[0].EventName;
+                var EventSummary = myJsonObject[0].EventSummary;
+                var EventURL = myJsonObject[0].EventURL;
+
+                $('<tr><td>' + EventLocation + '</td><td>' + EventName +
+                '</td><td>' + EventSummary + '</td>' + '</td><td>' + EventURL + '</td></tr>').appendTo('#Eventtbl');
+
+                EventLocation = myJsonObject[1].EventLocation;
+                EventName = myJsonObject[1].EventName;
+                EventSummary = myJsonObject[1].EventSummary;
+                EventURL = myJsonObject[1].EventURL;
+
+                $('<tr><td>' + EventLocation + '</td><td>' + EventName +
+                '</td><td>' + EventSummary + '</td>' + '</td><td>' + EventURL + '</td></tr>').appendTo('#Eventtbl');
+            },
+            error: function (xhr) {
+                alert(xhr.responseText);
+            }
+        });
+    }
+    function AlleventDetails() {
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:51474/api/AEventDetails/", //URI  
+
+            dataType: "json",
+            success: function (data) {
+                debugger;
+                var datadatavalue = data;
+                var myJsonObject = datavalue;
+                contentType: "application/json";
+                $.each(myJsonObject, function (i, mobj) {
+                    $('<tr><td>' + mobj.EventLocation + '</td><td>' + mobj.EventName +
+                    '</td><td>' + mobj.EventSummary + '</td>' + '</td><td>' + mobj.EventURL + '</td></tr>').appendTo('#Eventtbl');
+
+                    //$("#Eventtbl").append('<tr><td width="50px">' + mobj.EventName +
+                    // '</td><td width="50px">' + mobj.EventSummary +
+                    //'</td><td width="50px">' + mobj.EventLocation +
+                    //'</td>' + '</td><td width="50px">'
+                    //+ mobj.EventURL + '</td></tr>');
+
+                });
+
+            },
+            error: function (xhr) {
+                alert(xhr.responseText);
+            }
+        });
+
+    }
+    function PostData() {
+        var eventdetails =
+       {
+           EventName: "Event 3",
+           EventSummary: "This is event 3",
+           EventLocation: "Lisle",
+           EventURL: "http://www.theia4u.com"
+       };
+
+        $.ajax({
+            type: "POST",
+            data: JSON.stringify(eventdetails),
+            url: "http://localhost:51474/api/AEventDetails/",
+            dataType: "json",
+            contentType: "application/json",
+        });
+
+    }
+
+    function PutData() {
+
+        var eventdetails =
+         {
+
+             EventName: "Event 3",
+             EventSummary: "This is event 3",
+             EventLocation: "Lisle",
+             EventURL: "http://www.theia4u.com"
+
+         };
+
+        var t = JSON.stringify(eventdetails);
+        var id = "0";
+        $.ajax({
+            url: 'http://localhost:51474/api/AEventDetails/' + id,
+            type: "put",
+            contentType: "application/json; charset=utf-8",
+            data: t,
+            dataType: "json",
+
+        });
+    }
+    function deleteData1() {
+        var id = 0;
+        $.ajax({
+            url: 'http://localhost:51474/api/AEventDetails/' + id,
+            type: 'DELETE',
+            success: function (data) {
+
+            },
+            error: function (data) {
+                alert('Problem in deleting event:' + data.responseText);
+            }
+        });
+    }
+    function GetCarById() {
+        var id = 2;
+        $.ajax({
+            url: 'http://localhost:51474/api/AEventDetails/' + id,
+            type: 'GET',
+            dataType: "json",
+            success: function (data) {
+
+                var datavalue = data;
+                var myJsonObject = datavalue;
+
+                var EventLocation = myJsonObject.EventLocation;
+                var EventName = myJsonObject.EventName;
+                var EventSummary = myJsonObject.EventSummary;
+                var EventURL = myJsonObject.EventURL;
+
+                $('<tr><td>' + EventLocation + '</td><td>' + EventName +
+                '</td><td>' + EventSummary + '</td>' + '</td><td>' + EventURL + '</td></tr>').appendTo('#Eventtbl');
+
+                
+            },
+            error: function (xhr) {
+                alert(xhr.responseText);
+            }
+        });
+    }
+</script>
+
+@using (Html.BeginForm())
+{
+    <div style="text-align:center;">
+        <table border="1"  style="color: blue; width: 70%" id="Eventtbl">
+            <tr >
+                <td >
+                    <input id="btnget" type="button" onclick="AlleventDets();" value ="Get_Data" />
+                    <input id="btngetbyid" type="button" onclick="GetCarById();" value ="Get_BYID" />
+                    <!-- <input id="btnpost" type="button" onclick="PostData();" value ="Post_Data" /> -->
+                    <!-- <input id="btnput" type="button" onclick="PutData();" value ="Put_Data" /> -->
+                    <!-- <input id="btndelete" type="button" onclick="deleteData1();" value ="Delete" /> -->
+                 </td>
+            </tr>
+
+        </table>
+    </div>
+
+}

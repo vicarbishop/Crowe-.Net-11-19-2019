@@ -1,0 +1,101 @@
+﻿@model CHWebAPI.Event
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Event</legend>
+
+        @Html.HiddenFor(model => model.EventId)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EventName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EventName)
+            @Html.ValidationMessageFor(model => model.EventName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EventURL)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EventURL)
+            @Html.ValidationMessageFor(model => model.EventURL)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FromDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FromDate)
+            @Html.ValidationMessageFor(model => model.FromDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ToDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ToDate)
+            @Html.ValidationMessageFor(model => model.ToDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EventVenue)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EventVenue)
+            @Html.ValidationMessageFor(model => model.EventVenue)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EventSummary)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EventSummary)
+            @Html.ValidationMessageFor(model => model.EventSummary)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EventLocation)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EventLocation)
+            @Html.ValidationMessageFor(model => model.EventLocation)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CreatedDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CreatedDate)
+            @Html.ValidationMessageFor(model => model.CreatedDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LastUpdateDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LastUpdateDate)
+            @Html.ValidationMessageFor(model => model.LastUpdateDate)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

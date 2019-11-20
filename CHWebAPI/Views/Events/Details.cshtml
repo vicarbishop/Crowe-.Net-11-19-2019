@@ -1,0 +1,78 @@
+﻿@model CHWebAPI.Event
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Event</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EventName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EventName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EventURL)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EventURL)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FromDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FromDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ToDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ToDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EventVenue)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EventVenue)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EventSummary)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EventSummary)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EventLocation)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EventLocation)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CreatedDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CreatedDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LastUpdateDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LastUpdateDate)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.EventId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
